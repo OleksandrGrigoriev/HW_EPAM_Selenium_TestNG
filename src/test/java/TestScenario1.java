@@ -34,12 +34,8 @@ public class TestScenario1 {
 
     @Test
     public void findSignInButtonOnBasePageTest() {
-        ((JavascriptExecutor) driver).executeScript("window.scrollTo(0, document.body.scrollHeight)");
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.cssSelector(".a-button-text span")));
-        WebElement signInButton = basePage.find(By.cssSelector(".a-button-text span"));
-        String textOfButton = signInButton.getText();
-
+        basePage.refresh(driver);
+        String textOfButton = basePage.findSignInButton().getText();
         Assert.assertEquals(textOfButton, "Sign in");
     }
 
