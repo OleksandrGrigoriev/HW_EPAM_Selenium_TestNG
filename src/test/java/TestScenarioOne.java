@@ -1,23 +1,22 @@
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
+import pages.BasePage;
+import pages.InventoryPage;
+import pages.SauceDemoHomePage;
 
-import java.time.Duration;
-
-public class TestScenario1 {
+public class TestScenarioOne {
 
     private WebDriver driver;
     protected BasePage basePage;
-    private final String AUT_URL = "https://www.amazon.com/";
+    protected SauceDemoHomePage homePage;
+    protected InventoryPage inventoryPage;
+    private final String AUT_URL = "https://www.saucedemo.com/";
 
     @BeforeClass
     public void setUp() {
@@ -33,10 +32,10 @@ public class TestScenario1 {
     }
 
     @Test
-    public void findSignInButtonOnBasePageTest() {
-        basePage.refresh(driver);
-        String textOfButton = basePage.findSignInButton().getText();
-        Assert.assertEquals(textOfButton, "Sign in");
+    public void enteringInventoryPageTest() {
+        homePage = new SauceDemoHomePage();
+        inventoryPage = homePage.clickRegisterButtonWithCorrectData();
+        Assert.assertEquals("Swag Labs", inventoryPage.findLogoTitle());
     }
 
     @AfterClass
