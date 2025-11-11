@@ -9,13 +9,16 @@ import org.testng.annotations.Test;
 import pages.BasePage;
 import pages.InventoryPage;
 import pages.SauceDemoHomePage;
+import pages.ShoppingCartPage;
 
 public class TestScenarioOne {
 
+    private static final int ITEMS_IN_CART = 2;
     private WebDriver driver;
     protected BasePage basePage;
     protected SauceDemoHomePage homePage;
     protected InventoryPage inventoryPage;
+    protected ShoppingCartPage shoppingCartPage;
     private final String AUT_URL = "https://www.saucedemo.com/";
 
     @BeforeClass
@@ -32,10 +35,14 @@ public class TestScenarioOne {
     }
 
     @Test
-    public void enteringInventoryPageTest() {
+    public void sauceDemoSitePagesTest() {
         homePage = new SauceDemoHomePage();
         inventoryPage = homePage.clickRegisterButtonWithCorrectData();
-        Assert.assertEquals("Swag Labs", inventoryPage.findLogoTitle());
+        inventoryPage.addItemsToCart();
+        shoppingCartPage = inventoryPage.goToShoppingCart();
+        int amount = shoppingCartPage.getAmountOfItemsInShoppingCart();
+        Assert.assertEquals(ITEMS_IN_CART, amount);
+        //Assert.assertEquals("Swag Labs", inventoryPage.findLogoTitle());
     }
 
     @AfterClass
