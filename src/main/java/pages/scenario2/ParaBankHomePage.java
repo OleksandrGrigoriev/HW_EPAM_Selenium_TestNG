@@ -28,7 +28,7 @@ public class ParaBankHomePage extends BasePage  {
         PageFactory.initElements(driver, this);
     }
 
-    public void enterCorrectRegistrationData() {
+    public void enterRegistrationData() {
         usernameForm.sendKeys(login);
         passwordForm.sendKeys(password);
     }
@@ -38,8 +38,8 @@ public class ParaBankHomePage extends BasePage  {
         return new RegistrationPage();
     }
 
-    public ParaBankUserPage clickLogInButton() {
+    public AccountsOverviewPage clickLogInButton() {
         logInButton.click();
-        return new ParaBankUserPage();
+        return new AccountsOverviewPage();
     }
 }
