@@ -1,10 +1,7 @@
-package pages;
+package pages.scenario1;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
-import java.time.Duration;
+import pages.BasePage;
 
 public class CheckoutPage extends BasePage {
     private String name = "Alex";
@@ -17,8 +14,9 @@ public class CheckoutPage extends BasePage {
     private By continueButton = By.cssSelector("#continue");
 
     public void enterCheckoutInfo() {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Waits up to 10 seconds
-        wait.until(ExpectedConditions.visibilityOfElementLocated(By.name("firstName")));
+//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10)); // Waits up to 10 seconds
+//        wait.until(ExpectedConditions.visibilityOfElementLocated(nameForm));
+
         find(nameForm).sendKeys(name);
         find(lastNameForm).sendKeys(lastName);
         find(indexForm).sendKeys(index);

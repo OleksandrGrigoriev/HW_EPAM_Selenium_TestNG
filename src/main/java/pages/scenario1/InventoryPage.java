@@ -1,11 +1,12 @@
-package pages;
+package pages.scenario1;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+import pages.BasePage;
 
 import java.util.List;
 
-public class InventoryPage extends BasePage{
+public class InventoryPage extends BasePage {
     private By logoTitle = By.cssSelector(".app_logo");
     private List<WebElement> itemOnPage = driver.findElements(By.cssSelector(".btn_inventory"));
     private By cartButton = By.cssSelector(".shopping_cart_link");

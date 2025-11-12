@@ -8,11 +8,8 @@ import org.testng.ITestResult;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
 import pages.BasePage;
-import pages.SauceDemoHomePage;
 
-import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
@@ -22,20 +19,11 @@ public class BaseTest {
 
     protected WebDriver driver;
     protected BasePage basePage;
-    protected SauceDemoHomePage homePage;
-    protected final String AUT_URL = "https://www.saucedemo.com/";
 
     @BeforeClass
     public void setUp() {
         driver = new ChromeDriver(suppressWarning());
         driver.manage().window().maximize();
-    }
-
-    @BeforeMethod
-    public void loadApplication() {
-        driver.get(AUT_URL);
-        basePage = new BasePage();
-        basePage.setDriver(driver);
     }
 
     @AfterMethod
@@ -55,6 +43,11 @@ public class BaseTest {
         }
     }
 
+    @AfterClass
+    public void tearDown() {
+        driver.quit();
+    }
+
     private ChromeOptions suppressWarning() {
         Map<String, Object> prefs = new HashMap<>();
         prefs.put("profile.password_manager_leak_detection", false);
@@ -64,10 +57,5 @@ public class BaseTest {
         ChromeOptions options = new ChromeOptions();
         options.setExperimentalOption("prefs", prefs);
         return options;
-    }
-
-    @AfterClass
-    public void tearDown() {
-        driver.quit();
     }
 }
