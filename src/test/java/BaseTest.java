@@ -26,22 +26,22 @@ public class BaseTest {
         driver.manage().window().maximize();
     }
 
-    @AfterMethod
-    public void takeScreenshotForFailures(ITestResult testResult) {
-        if(ITestResult.FAILURE == testResult.getStatus()) {
-            TakesScreenshot screenshot = (TakesScreenshot) driver;
-            File source = screenshot.getScreenshotAs(OutputType.FILE);
-            File destination = new File(System.getProperty("user.dir") +
-                    "/resources/screenshots/" +
-                    testResult.getName() + ".png");
-
-            try {
-                FileHandler.copy(source, destination);
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
-            }
-        }
-    }
+//    @AfterMethod
+//    public void takeScreenshotForFailures(ITestResult testResult) {
+//        if(ITestResult.FAILURE == testResult.getStatus()) {
+//            TakesScreenshot screenshot = (TakesScreenshot) driver;
+//            File source = screenshot.getScreenshotAs(OutputType.FILE);
+//            File destination = new File(System.getProperty("user.dir") +
+//                    "/resources/screenshots/" +
+//                    testResult.getName() + ".png");
+//
+//            try {
+//                FileHandler.copy(source, destination);
+//            } catch (IOException ioException) {
+//                ioException.printStackTrace();
+//            }
+//        }
+//    }
 
     @AfterClass
     public void tearDown() {

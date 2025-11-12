@@ -18,6 +18,9 @@ public class ParaBankHomePage extends BasePage  {
     @FindBy(how = How.CSS, using = "input[type='submit']")
     public WebElement logInButton;
 
+    @FindBy(how = How.XPATH, using = "//a[text()='Register']")
+    public WebElement registerLink;
+
     private String login = "Alex";
     private String password = "1234567890";
 
@@ -30,8 +33,13 @@ public class ParaBankHomePage extends BasePage  {
         passwordForm.sendKeys(password);
     }
 
-    public ParaBankUserPAge clickLogInButton() {
+    public RegistrationPage goToRegistrationPage() {
+        registerLink.click();
+        return new RegistrationPage();
+    }
+
+    public ParaBankUserPage clickLogInButton() {
         logInButton.click();
-        return new ParaBankUserPAge();
+        return new ParaBankUserPage();
     }
 }
