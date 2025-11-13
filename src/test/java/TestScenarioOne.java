@@ -27,21 +27,26 @@ public class TestScenarioOne extends BaseTest{
     public void sauceDemoSitePagesTest() throws InterruptedException {
         homePage = new SauceDemoHomePage();
         Thread.sleep(3000);
+
         inventoryPage = homePage.clickRegisterButtonWithCorrectData();
         softAssert.assertEquals("Swag Labs", inventoryPage.findLogoTitle());
         inventoryPage.addItemsToCart();
         Thread.sleep(3000);
+
         shoppingCartPage = inventoryPage.goToShoppingCart();
         int amount = shoppingCartPage.getAmountOfItemsInShoppingCart();
         softAssert.assertEquals(ITEMS_IN_CART, amount);
         Thread.sleep(3000);
+
         checkoutPage = shoppingCartPage.goToCheckoutPage();
         checkoutPage.enterCheckoutInfo();
         Thread.sleep(3000);
+
         checkoutOverViewPage = checkoutPage.goToCheckoutOverViewPge();
         amount = checkoutOverViewPage.getAmountOfItemsOnCheckoutOverView();
         softAssert.assertEquals(ITEMS_IN_CART, amount);
         Thread.sleep(3000);
+
         checkoutCompletePage = checkoutOverViewPage.goToCheckoutCompletePage();
         String completeMessage = checkoutCompletePage.getCompleteMessage();
         softAssert.assertEquals(COMPLETE_MESSAGE, completeMessage);
