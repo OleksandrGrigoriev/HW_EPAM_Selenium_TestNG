@@ -1,20 +1,21 @@
+import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
 import pages.BasePage;
 import pages.scenario1.*;
 
-public class TestScenarioOne extends BaseTest{
+public class TestScenarioThree extends BaseTest{
+
     SoftAssert softAssert = new SoftAssert();
-    private static final int ITEMS_IN_CART = 2;
-    private static final String COMPLETE_MESSAGE = "Thank you for your order!";
     protected final String AUT_URL = "https://www.saucedemo.com/";
+    private static final int ITEMS_TO_CART = 4;
     protected SauceDemoHomePage homePage;
     protected InventoryPage inventoryPage;
     protected ShoppingCartPage shoppingCartPage;
     protected CheckoutPage checkoutPage;
     protected CheckoutOverViewPage checkoutOverViewPage;
-    protected CheckoutCompletePage checkoutCompletePage;
+
 
     @BeforeMethod
     public void loadApplication() {
@@ -26,30 +27,17 @@ public class TestScenarioOne extends BaseTest{
     @Test
     public void sauceDemoSitePagesTest() throws InterruptedException {
         homePage = new SauceDemoHomePage();
-        Thread.sleep(3000);
-
+        Thread.sleep(2000);
         inventoryPage = homePage.clickRegisterButtonWithCorrectData();
-        softAssert.assertEquals("Swag Labs", inventoryPage.findLogoTitle());
-        inventoryPage.addItemsToCart(ITEMS_IN_CART);
-        Thread.sleep(3000);
-
+        inventoryPage.addItemsToCart(ITEMS_TO_CART);
         shoppingCartPage = inventoryPage.goToShoppingCart();
-        int amount = shoppingCartPage.getAmountOfItemsInShoppingCart();
-        softAssert.assertEquals(ITEMS_IN_CART, amount);
-        Thread.sleep(3000);
-
+        Thread.sleep(2000);
         checkoutPage = shoppingCartPage.goToCheckoutPage();
         checkoutPage.enterCheckoutInfo();
-        Thread.sleep(3000);
-
+        Thread.sleep(2000);
         checkoutOverViewPage = checkoutPage.goToCheckoutOverViewPge();
-        amount = checkoutOverViewPage.getAmountOfItemsOnCheckoutOverView();
-        softAssert.assertEquals(ITEMS_IN_CART, amount);
-        Thread.sleep(3000);
-
-        checkoutCompletePage = checkoutOverViewPage.goToCheckoutCompletePage();
-        String completeMessage = checkoutCompletePage.getCompleteMessage();
-        softAssert.assertEquals(COMPLETE_MESSAGE, completeMessage);
-
+        Thread.sleep(2000);
+        double finalPrice = checkoutOverViewPage.getFinalPrice();
+        Assert.assertEquals(finalPrice, InventoryPage.orderPrice);
     }
 }

@@ -27,7 +27,9 @@ public class BasePage {
 
     protected String getText(By locator) {
         String text = find(locator).getText();
-        System.out.println("Text: " + text);
+        //System.out.println("Text: " + text);
         return text;
     }
+
+
 }
