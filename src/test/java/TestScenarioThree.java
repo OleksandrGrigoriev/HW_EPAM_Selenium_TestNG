@@ -28,15 +28,19 @@ public class TestScenarioThree extends BaseTest{
     public void sauceDemoSitePagesTest() throws InterruptedException {
         homePage = new SauceDemoHomePage();
         Thread.sleep(2000);
+
         inventoryPage = homePage.clickRegisterButtonWithCorrectData();
         inventoryPage.addItemsToCart(ITEMS_TO_CART);
         shoppingCartPage = inventoryPage.goToShoppingCart();
         Thread.sleep(2000);
+
         checkoutPage = shoppingCartPage.goToCheckoutPage();
         checkoutPage.enterCheckoutInfo();
         Thread.sleep(2000);
+
         checkoutOverViewPage = checkoutPage.goToCheckoutOverViewPge();
         Thread.sleep(2000);
+
         double finalPrice = checkoutOverViewPage.getFinalPrice();
         Assert.assertEquals(finalPrice, InventoryPage.orderPrice);
     }

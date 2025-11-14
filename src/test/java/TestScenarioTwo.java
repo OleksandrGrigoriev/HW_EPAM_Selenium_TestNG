@@ -33,7 +33,7 @@ public class TestScenarioTwo extends BaseTest {
         homePage = new ParaBankHomePage();
         homePage.enterRegistrationData();
         accountsOverviewPage = homePage.clickLogInButton();
-        Thread.sleep(3000);
+        Thread.sleep(2000);
 
         // if registered account was deleted, we look for an Error message and register a new user
         List<WebElement> errorMessages = driver.findElements(By.cssSelector("#rightPanel > p"));
